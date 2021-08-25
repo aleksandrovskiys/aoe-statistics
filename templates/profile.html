@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>{{ player.name }}</h1>
+
+    <h2 class="stat-header">Rating:</h2>
+    {% for leaderboard, stats in player.current_stats.items() %}
+        <div>
+            <strong>{{ leaderboard }}:</strong> {{ stats.rating }} ELO, {{ stats.wins }}  wins, {{ stats.defeats }} loss,
+                {{ stats.win_percentage }}% wins.
+        </div>
+    {% endfor %}
+
+    <h2 class="stat-header">Civilization stats: </h2>
+    Recent since: {{ period_start }}
+    <table class="stat-table">
+        <tr>
+            <th>Civilization</th>
+            <th>Wins</th>
+            <th>Defeats</th>
+            <th>Win Percentage</th>
+            <th>Recent Wins</th>
+            <th>Recent Defeats</th>
+            <th>Recent Win Percentage</th>
+            <th>Total</th>
+        </tr>
+        {% for civilization, stats in player.get_civ_stats.items() %}
+            <tr>
+                <td>{{ civilization }}</td>
+                <td>{{ stats.wins }}</td>
+                <td>{{ stats.defeats }}</td>
+                <td>{{ stats.win_percentage }}</td>
+                <td>{{ stats.last_month_wins }}</td>
+                <td>{{ stats.last_month_defeats }}</td>
+                <td>{{ stats.last_month_win_percentage }}</td>
+                <td>{{ stats.total_matches }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2 class="stat-header">Map stats: </h2>
+    Recent since: {{ period_start }}
+    <table class="stat-table">
+        <tr>
+            <th>Map</th>
+            <th>Wins</th>
+            <th>Defeats</th>
+            <th>Win Percentage</th>
+            <th>Recent Wins</th>
+            <th>Recent Defeats</th>
+            <th>Recent Win Percentage</th>
+            <th>Total</th>
+        </tr>
+        {% for map, stats in player.get_map_stats.items() %}
+            <tr>
+                <td>{{ map }}</td>
+                <td>{{ stats.wins }}</td>
+                <td>{{ stats.defeats }}</td>
+                <td>{{ stats.win_percentage }}</td>
+                <td>{{ stats.last_month_wins }}</td>
+                <td>{{ stats.last_month_defeats }}</td>
+                <td>{{ stats.last_month_win_percentage }}</td>
+                <td>{{ stats.total_matches }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2 class="stat-header">Matches</h2>
+    <ul>
+        {% for match in player.matches %}
+            <li>{{ match }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+.stat-table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.stat-table * {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.stat-header {
+    margin: 5px auto;
+    text-align: center;
+}
